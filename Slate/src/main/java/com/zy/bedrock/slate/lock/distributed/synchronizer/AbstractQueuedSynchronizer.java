@@ -16,7 +16,7 @@ import java.util.concurrent.locks.LockSupport;
  * 依据这个有序访问流实现线程的等待与被动唤醒机制，从而避免了高并发下大量的 CAS 自旋等待竞争。
  */
 @Slf4j
-public abstract class AbstractQueuedSynchronizer<T extends Competitor> extends AbstractExclusiveAccessSynchronizer {
+public abstract class AbstractQueuedSynchronizer<T  extends Competitor> extends AbstractExclusiveAccessSynchronizer<T> {
 	protected volatile AtomicReference<CompetitorQueuedNode<T>> head;
 	protected volatile AtomicReference<CompetitorQueuedNode<T>> tail;
 

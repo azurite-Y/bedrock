@@ -28,8 +28,6 @@ public class RedisDistributedGlobalCombinationLock extends AbstractGlobalDistrib
      * 通过其可以显而易见的得到整个联合锁的加锁超时时间
      */
     // private final int singleLockOperationTime;
-    /** 最小可用节点数 */
-    private final int minAvailableNodeNumber;
     /** 不可用节点间隔重试时间，单位为毫秒。默认为15分钟 */
     private final long retryLockIntervalTime;
 
@@ -64,7 +62,6 @@ public class RedisDistributedGlobalCombinationLock extends AbstractGlobalDistrib
         this.retryLockIntervalTime = retryLockIntervalTime;
         // this.singleLockOperationTime = singleLockOperationTime;
         this.timeoutWaitTime = singleLockOperationTime * redisServerNodes.length + 100;
-        this.minAvailableNodeNumber = this.redisServerNodes.length / 2 + 2;
 
         this.sync = new Sync();
     }
@@ -134,7 +131,8 @@ public class RedisDistributedGlobalCombinationLock extends AbstractGlobalDistrib
      */
     private void assertMinAvailableRedisNodeNumber(int currentIndex, GlobalCombinationLockCompetitor competitor) {
         StringBuilder builder;
-        if (minAvailableNodeNumber > this.redisServerNodes.length - competitor.unAvailableNodeNumber) {
+        // 最小可用节点数为 2
+        if (2 > this.redisServerNodes.length - competitor.unAvailableNodeNumber) {
             unlock(currentIndex, competitor.lockHolderName);
 
             builder = new StringBuilder("加锁失败，当前 Redis 可用节点数小于联合锁最小可用节点数限制 :: lockHolderName");
