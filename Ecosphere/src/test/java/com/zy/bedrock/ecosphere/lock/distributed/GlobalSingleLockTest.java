@@ -83,7 +83,7 @@ public class GlobalSingleLockTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-//			redisDistributedGlobalSingleLock.unlock();
+			redisDistributedGlobalSingleLock.unlock();
 		}
 		try {
 			TimeUnit.SECONDS.sleep(1000000);

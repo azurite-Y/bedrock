@@ -1,7 +1,7 @@
 package com.zy.bedrock.slate.lock.distributed.single;
 
 import com.zy.bedrock.slate.lock.distributed.AbstractDistributedLockFactory;
-import com.zy.bedrock.slate.lock.distributed.Assert;
+import com.zy.bedrock.slate.utils.Assert;
 import com.zy.bedrock.slate.lock.distributed.DistributedLockType;
 import com.zy.bedrock.slate.lock.distributed.exception.NotSupportedException;
 import io.lettuce.core.RedisClient;

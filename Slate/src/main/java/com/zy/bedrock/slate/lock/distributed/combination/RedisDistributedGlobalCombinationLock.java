@@ -1,7 +1,7 @@
 package com.zy.bedrock.slate.lock.distributed.combination;
 
 import com.zy.bedrock.slate.lock.distributed.AbstractGlobalDistributedLock;
-import com.zy.bedrock.slate.lock.distributed.Assert;
+import com.zy.bedrock.slate.utils.Assert;
 import com.zy.bedrock.slate.lock.distributed.Competitor;
 import com.zy.bedrock.slate.lock.distributed.exception.CompetitorCombinationLockTimeoutException;
 import com.zy.bedrock.slate.lock.distributed.scheduled.DistributeScheduledTask;

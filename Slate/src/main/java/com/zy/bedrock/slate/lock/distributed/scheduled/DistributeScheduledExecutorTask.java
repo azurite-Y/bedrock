@@ -1,7 +1,7 @@
 package com.zy.bedrock.slate.lock.distributed.scheduled;
 
 
-import com.zy.bedrock.slate.lock.distributed.Assert;
+import com.zy.bedrock.slate.utils.Assert;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

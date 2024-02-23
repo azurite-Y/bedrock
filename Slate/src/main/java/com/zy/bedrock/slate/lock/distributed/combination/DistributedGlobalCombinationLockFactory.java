@@ -2,7 +2,7 @@ package com.zy.bedrock.slate.lock.distributed.combination;
 
 
 import com.zy.bedrock.slate.lock.distributed.AbstractDistributedLockFactory;
-import com.zy.bedrock.slate.lock.distributed.Assert;
+import com.zy.bedrock.slate.utils.Assert;
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;

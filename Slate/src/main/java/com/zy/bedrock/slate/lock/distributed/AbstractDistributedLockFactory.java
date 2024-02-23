@@ -3,6 +3,7 @@ package com.zy.bedrock.slate.lock.distributed;
 
 import com.zy.bedrock.slate.lock.distributed.scheduled.DistributeScheduledExecutorTask;
 import com.zy.bedrock.slate.lock.distributed.scheduled.DistributeScheduledTask;
+import com.zy.bedrock.slate.utils.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.zy.bedrock.slate.lock.distributed;
+package com.zy.bedrock.slate.utils;
 
 import java.util.Collection;
 import java.util.function.Supplier;
