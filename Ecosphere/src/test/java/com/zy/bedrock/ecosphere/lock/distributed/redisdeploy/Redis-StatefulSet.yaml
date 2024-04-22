@@ -1,0 +1,124 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: azurite-redis-cm
+  namespace: dev
+  annotations:
+    kubesphere.io/description: Redis 单节点部署配置
+data:
+  redis.conf: |-
+    bind 0.0.0.0
+
+    protected-mode yes
+
+    daemonize no
+
+    requirepass 123456
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: dev
+  labels:
+    app: azurite-redis
+  name: azurite-redis-sts
+  annotations:
+    kubesphere.io/description: Redis 单节点部署
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azurite-redis
+  template:
+    metadata:
+      labels:
+        app: azurite-redis
+      annotations:
+        cni.projectcalico.org/ipv4pools: '["default-ipv4-ippool"]'
+    spec:
+      containers:
+        - name: redis
+          imagePullPolicy: IfNotPresent
+          image: 'redis:7.2.0'
+          ports:
+            - name: tcp-6379
+              protocol: TCP
+              containerPort: 6379
+          command:
+            - redis-server
+          volumeMounts:
+            - name: host-time
+              mountPath: /etc/localtime
+              readOnly: false
+            - readOnly: false
+              mountPath: /var/lib/redis/data/
+              name: azurite-redis-date
+            - readOnly: false
+              mountPath: /var/log/redis/
+              name: azurite-redis-log
+            - name: volume-sbxmjv
+              readOnly: true
+              mountPath: /etc/redis/redis.conf
+              subPath: redis.conf
+          args:
+            - /etc/redis/redis.conf
+      initContainers: []
+      volumes:
+        - hostPath:
+            path: /etc/localtime
+            type: ''
+          name: host-time
+        - name: volume-sbxmjv
+          configMap:
+            name: azurite-redis-cm
+            items:
+              - key: redis.conf
+                path: redis.conf
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  serviceName: azurite-redis-svc
+  volumeClaimTemplates:
+    - spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: local
+      metadata:
+        name: azurite-redis-date
+        namespace: dev
+    - spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local
+      metadata:
+        name: azurite-redis-log
+        namespace: dev
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dev
+  labels:
+    app: azurite-redis
+  name: azurite-redis-svc
+  annotations:
+    kubesphere.io/description: Redis 单节点部署 Service
+spec:
+  sessionAffinity: None
+  selector:
+    app: azurite-redis
+  type: NodePort
+  ports:
+    - name: tcp-6379
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
+      nodePort: 30026

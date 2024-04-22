@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zy.bedrock</groupId>
-    <artifactId>Bedrock</artifactId>
+    <artifactId>bedrock</artifactId>
     <description>基石</description>
     <version>1.0</version>
     <packaging>pom</packaging>
     <modules>
-        <module>Slate</module>
-        <module>Ecosphere</module>
+        <module>slate</module>
+        <module>ecosphere</module>
     </modules>
 
     <properties>
@@ -39,10 +39,20 @@
                 <artifactId>lettuce-core</artifactId>
                 <version>6.1.10.RELEASE</version>
             </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>3.24.3</version>
+            </dependency>
             <!-- 控制子项目所依赖的模块版本 -->
             <dependency>
-                <groupId>com.zy.bedrock.slate</groupId>
-                <artifactId>Slate</artifactId>
+                <groupId>com.zy.bedrock</groupId>
+                <artifactId>slate</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zy.bedrock</groupId>
+                <artifactId>ecosphere</artifactId>
                 <version>1.0</version>
             </dependency>
         </dependencies>

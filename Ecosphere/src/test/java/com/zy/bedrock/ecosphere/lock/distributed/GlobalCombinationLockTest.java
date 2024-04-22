@@ -32,7 +32,7 @@ import java.util.concurrent.locks.Lock;
 public class GlobalCombinationLockTest {
     private Lock redisDistributedGlobalCombinationLock;
     private StatefulRedisConnection<String, String> redisConnection;
-    private final String distributeLockKey = "redis";
+    private final String DISTRIBUTE_LOCK_KEY = "redis";
 
     @BeforeEach
     public void before() {
@@ -62,7 +62,7 @@ public class GlobalCombinationLockTest {
 
         RedisURI[] redisURIS = {redisURI1, redisURI2, redisURI3};
         DistributedGlobalCombinationLockFactory globalCombinationLockFactory =
-                new DistributedGlobalCombinationLockFactory(redisURIS, distributeLockKey, 6, 6, 4);
+                new DistributedGlobalCombinationLockFactory(redisURIS, DISTRIBUTE_LOCK_KEY, 6, 6, 4);
         this.redisDistributedGlobalCombinationLock = globalCombinationLockFactory.newGlobalRedisDistributedLockInstall();
 
         delDistributeLoc(redisURIS);
@@ -78,7 +78,7 @@ public class GlobalCombinationLockTest {
      */
     private void delDistributeLoc(RedisURI[] redisURIArr) {
         for (RedisURI redisURI : redisURIArr) {
-            RedisClient.create(redisURI).connect().sync().del(distributeLockKey);
+            RedisClient.create(redisURI).connect().sync().del(DISTRIBUTE_LOCK_KEY);
         }
     }
 

@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zy.bedrock</groupId>
-        <artifactId>Bedrock</artifactId>
+        <artifactId>bedrock</artifactId>
         <version>1.0</version>
     </parent>
 
-    <groupId>com.zy.bedrock.ecosphere</groupId>
-    <artifactId>Ecosphere</artifactId>
+    <artifactId>ecosphere</artifactId>
     <description>生态圈</description>
 
     <properties>
@@ -45,8 +44,14 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.zy.bedrock.slate</groupId>
-            <artifactId>Slate</artifactId>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.zy.bedrock</groupId>
+            <artifactId>slate</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -75,7 +80,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.zy.JunitStudyApp</mainClass>
+                    <mainClass>com.zy.bedrock.ecosphere.EcosphereApp</mainClass>
                     <layout>JAR</layout>
                 </configuration>
                 <executions>

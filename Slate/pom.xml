@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zy.bedrock</groupId>
-        <artifactId>Bedrock</artifactId>
+        <artifactId>bedrock</artifactId>
         <version>1.0</version>
     </parent>
 
-    <groupId>com.zy.bedrock.slate</groupId>
-    <artifactId>Slate</artifactId>
+    <artifactId>slate</artifactId>
     <description>岩板</description>
 
     <properties>
