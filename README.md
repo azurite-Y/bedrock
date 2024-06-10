@@ -12,9 +12,9 @@ Bedrock (基岩) ，是为一个类似于工具包的项目。旨在开源个人
 
 ### <font face="宋体" color=#7030A0>2、模块划分</font>
 
-当前划分为 Slate 和 Ecosphere 两个模块。在 Slate (岩板) 模块的中存放的是开发完成的模块化类，而 Ecosphere  (生态圈) 则是存放针对这些类的测试用例。
+当前划分为 slate 和 ecosphere 两个模块。在 Slate (岩板) 模块的中存放的是开发完成的模块化类，而 ecosphere  (生态圈) 则是存放针对这些类的测试用例。
 
-当前 Ecosphere  使用 SpringBoot V2.7.17。整个模块中所用到的依赖均和 spring-boot-dependencies 保持一致。
+当前 ecosphere  使用 SpringBoot V2.7.17。整个模块中所用到的依赖均和 spring-boot-dependencies 保持一致。
 
 ##  <font face="宋体" color=#5B9BD5>二、功能模块</font>
 
